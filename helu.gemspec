@@ -6,10 +6,10 @@ Gem::Specification.new do |spec|
   spec.version       = VERSION
   spec.authors       = ["Ivan Acosta-Rubio"]
   spec.email         = ["ivan@bakedweb.net"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
-  spec.license       = ""
+  spec.description   = %q{Ruby Motion :: StoreKit Wrapper :: Allows In App Purchases }
+  spec.summary       = %q{Ruby Motion StoreKit Wrapper}
+  spec.homepage      = "http://www.ivanacostarubio.com"
+  spec.license       = "MIT"
 
   files = []
   files << 'README.md'
