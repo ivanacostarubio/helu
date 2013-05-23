@@ -17,19 +17,16 @@ class Helu
 
 
   def buy
-    SKPaymentQueue.defaultQueue.addPayment(SKPayment.paymentWithProductIdentifier(product_id))
+    payment = SKPayment.paymentWithProductIdentifier(product_id)
+    SKPaymentQueue.defaultQueue.addPayment(payment)
   end
 
-  private
+#  private
 
   def finishTransaction(transaction, wasSuccessful:wasSuccessful)
     SKPaymentQueue.defaultQueue.finishTransaction(transaction)
     produt_id = transaction.payment.productIdentifier
-    if (wasSuccessful)
-      @winning.call ; puts "Was suscessfull"
-    else
-      @fail.call ; puts "was unsuscessfull"
-    end
+    wasSuccessful ? @winning.call : @fail.call
   end
 
   def completeTransaction(transaction)
