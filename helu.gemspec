@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
-VERSION = "1.0"
+VERSION = "0.1"
 
 Gem::Specification.new do |spec|
   spec.name          = "helu"
   spec.version       = VERSION
   spec.authors       = ["Ivan Acosta-Rubio"]
   spec.email         = ["ivan@bakedweb.net"]
-  spec.description   = %q{Ruby Motion :: StoreKit Wrapper :: Allows In App Purchases }
-  spec.summary       = %q{Ruby Motion StoreKit Wrapper}
+  spec.description   = %q{RubyMotion :: StoreKit Wrapper :: Allows In App Purchases }
+  spec.summary       = %q{RubyMotion StoreKit Wrapper}
   spec.homepage      = "http://www.ivanacostarubio.com"
   spec.license       = "MIT"
 
