@@ -57,7 +57,7 @@ describe "Application 'helu'" do
     FakeQueue.instance.added_observer.should == true
   end
 
-  it "sends the payment to apple" do
+  it "sends the to apple" do
     @carlos = Helu.new("wasa")
     FakeQueue.instance.payment_sent.should == nil
     @carlos.buy
