@@ -32,3 +32,9 @@ Start a helu with the In App Purchase ID:
 ####  buy the product: 
 
     @helu.buy
+    
+    
+#### Supported types of In App Purchases
+
+Consumables and Non-Consumables are supported. 
+Auto-Renewable subscriptions and Non-Renewing Subscriptions are not supported yet. However, we would love some help making it happen. 
