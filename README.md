@@ -23,11 +23,13 @@ Start a helu with the In App Purchase ID:
 
 #### create blocks for failing and buying: 
 
-    fail_block = lambda { # node here for failed in app purchase }
-    buy_block = lambda { # code here for successful in app purchase }
+    @helu.fail = lambda { |transaction| puts transaction ; # node here for failed in app purchase }
+    @helu.winning = lambda { |transaction| puts transaction ; # code here for successful in app purchase }
 
-    @helu.fail = fail_block
-    @helu.winning = winning_block
+
+The transaction object on the lambda is the one we get from Apple; Therefore, it is a SKPaymentTransaction. [More information about it here](http://developer.apple.com/library/ios/#documentation/StoreKit/Reference/SKPaymentTransaction_Class/Reference/Reference.html)
+
+
 
 ####  buy the product: 
 
@@ -36,5 +38,5 @@ Start a helu with the In App Purchase ID:
     
 #### Supported types of In App Purchases
 
-Consumables and Non-Consumables are supported. 
-Auto-Renewable subscriptions and Non-Renewing Subscriptions are not supported yet. However, we would love some help making it happen. 
++ Consumables and Non-Consumables are supported. 
++ Auto-Renewable subscriptions and Non-Renewing Subscriptions are not supported yet. However, we would love some help making it happen. 
