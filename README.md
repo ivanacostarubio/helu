@@ -34,6 +34,11 @@ The transaction object on the lambda is the one we get from Apple; Therefore, it
 ####  buy the product: 
 
     @helu.buy
+
+
+## Example App: 
+
+[You can find an example app here](https://github.com/ivanacostarubio/helu-example). Remember that for this to work properly, you must add your app identifier to the Rakefile.
     
     
 #### Supported types of In App Purchases
