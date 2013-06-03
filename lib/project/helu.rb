@@ -4,7 +4,7 @@ class Helu
 
   def initialize(product_id)
     @product_id = product_id
-    SKPaymentQueue.defaultQueue.addTransactionObserver(self)
+  #  SKPaymentQueue.defaultQueue.addTransactionObserver(self)
   end
 
   def fail=(fail_block)
@@ -26,7 +26,7 @@ class Helu
   def finishTransaction(transaction, wasSuccessful:wasSuccessful)
     SKPaymentQueue.defaultQueue.finishTransaction(transaction)
     produt_id = transaction.payment.productIdentifier
-    wasSuccessful ? @winning.call : @fail.call
+    wasSuccessful ? @winning.call(transaction) : @fail.call(transaction)
   end
 
   def completeTransaction(transaction)
@@ -44,7 +44,7 @@ class Helu
     if (transaction.error.code != SKErrorPaymentCancelled)
       finishTransaction(transaction, wasSuccessful:false)
     elsif transaction.error.code == SKErrorPaymentCancelled
-      @fail.call
+      @fail.call(transaction)
     else
       SKPaymentQueue.defaultQueue.finishTransaction(transaction)
     end
