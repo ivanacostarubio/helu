@@ -41,7 +41,7 @@ The transaction object on the lambda is the one we get from Apple; Therefore, it
 [You can find an example app here](https://github.com/ivanacostarubio/helu-example). Remember that for this to work properly, you must add your app identifier to the Rakefile.
     
     
-#### Supported types of In App Purchases
+## Supported types of In App Purchases
 
 + Consumables and Non-Consumables are supported. 
 + Auto-Renewable subscriptions and Non-Renewing Subscriptions are not supported yet. However, we would love some help making it happen. 
