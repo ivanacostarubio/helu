@@ -4,7 +4,7 @@ class Helu
 
   def initialize(product_id)
     @product_id = product_id
-  #  SKPaymentQueue.defaultQueue.addTransactionObserver(self)
+    SKPaymentQueue.defaultQueue.addTransactionObserver(self)
   end
 
   def fail=(fail_block)
