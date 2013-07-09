@@ -7,6 +7,10 @@ class Helu
     SKPaymentQueue.defaultQueue.addTransactionObserver(self)
   end
 
+  def close_the_store
+    SKPaymentQueue.defaultQueue.removeTransactionObserver(self)
+  end
+
   def fail=(fail_block)
     @fail = fail_block
   end
