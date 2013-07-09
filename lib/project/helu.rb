@@ -52,14 +52,16 @@ class Helu
 
   def paymentQueue(queue,updatedTransactions:transactions)
     transactions.each do |transaction|
-      case transaction.transactionState
-        when SKPaymentTransactionStatePurchased
-          completeTransaction(transaction)
-        when SKPaymentTransactionStateFailed
-          failedTransaction(transaction)
-        when SKPaymentTransactionStateRestored
-          restoreTransaction(transaction)
-        else 
+      if transaction.payment.productIdentifier == @product_id
+        case transaction.transactionState
+          when SKPaymentTransactionStatePurchased
+            completeTransaction(transaction)
+          when SKPaymentTransactionStateFailed
+            failedTransaction(transaction)
+          when SKPaymentTransactionStateRestored
+            restoreTransaction(transaction)
+          else 
+        end
       end
     end
   end
