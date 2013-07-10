@@ -36,6 +36,11 @@ The transaction object on the lambda is the one we get from Apple; Therefore, it
     @helu.buy
 
 
+Make sure that if your code ever throws out the Helu object, it better also close the store before doing so.
+
+    @helu.close_the_store
+
+
 ## Example App: 
 
 [You can find an example app here](https://github.com/ivanacostarubio/helu-example). Remember that for this to work properly, you must add your app identifier to the Rakefile.
