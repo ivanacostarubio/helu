@@ -1,5 +1,8 @@
 # helu
 
+[![Build Status](https://travis-ci.org/ivanacostarubio/helu.png)](https://travis-ci.org/ivanacostarubio/helu)
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
