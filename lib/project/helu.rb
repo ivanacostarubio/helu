@@ -1,14 +1,12 @@
 class Helu
   
-  attr_reader :product_id
+  attr_reader :product_id, :purchased_ids, :storage
+
 
   def initialize(product_id)
     @product_id = product_id
     SKPaymentQueue.defaultQueue.addTransactionObserver(self)
-  end
-
-  def close_the_store
-    SKPaymentQueue.defaultQueue.removeTransactionObserver(self)
+    @storage = LocalStorage.new
   end
 
   def fail=(fail_block)
@@ -19,10 +17,25 @@ class Helu
     @winning = winning_block
   end
 
+  def restore=(restore_block)
+    @restore = restore_block
+  end
 
   def buy
     payment = SKPayment.paymentWithProductIdentifier(product_id)
     SKPaymentQueue.defaultQueue.addPayment(payment)
+  end
+
+  def restore
+    SKPaymentQueue.defaultQueue.restoreCompletedTransactions
+  end
+
+  def close
+    SKPaymentQueue.defaultQueue.removeTransactionObserver(self)
+  end
+
+  def bought?
+    @storage.all.include?(product_id)
   end
 
 #  private
@@ -30,7 +43,12 @@ class Helu
   def finishTransaction(transaction, wasSuccessful:wasSuccessful)
     SKPaymentQueue.defaultQueue.finishTransaction(transaction)
     produt_id = transaction.payment.productIdentifier
-    wasSuccessful ? @winning.call(transaction) : @fail.call(transaction)
+    if wasSuccessful 
+      @winning.call(transaction)
+      storage.add(product_id)
+    else
+      @fail.call(transaction)
+    end
   end
 
   def completeTransaction(transaction)
@@ -56,7 +74,7 @@ class Helu
 
   def paymentQueue(queue,updatedTransactions:transactions)
     transactions.each do |transaction|
-      if transaction.payment.productIdentifier == @product_id
+      if transaction.payment.productIdentifier == product_id
         case transaction.transactionState
           when SKPaymentTransactionStatePurchased
             completeTransaction(transaction)
@@ -68,6 +86,50 @@ class Helu
         end
       end
     end
+  end
+
+  def paymentQueueRestoreCompletedTransactionsFinished(queue)
+    ids = []
+    queue.transactions.each do |transaction|
+      product_id = transaction.payment.productIdentifier
+      ids << product_id
+    end
+    @restore.call if ids.uniq.include? product_id
+  end
+
+
+  class LocalStorage
+
+    def clean
+      defaults.setObject(nil, forKey: key_for_defaults)
+      defaults.synchronize
+    end
+
+    def add(product_id)
+      if all
+        defaults.setObject([all, product_id].flatten, forKey: key_for_defaults)
+      else
+        defaults.setObject([product_id], forKey: key_for_defaults)
+      end
+
+      defaults.synchronize
+    end
+
+    def all
+      return [] if defaults.valueForKey(key_for_defaults) == nil
+      defaults.valueForKey(key_for_defaults)
+    end
+
+    private 
+
+    def key_for_defaults
+      "helu_products"
+    end
+
+    def defaults
+      NSUserDefaults.standardUserDefaults
+    end
+
   end
 
 end

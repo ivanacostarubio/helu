@@ -26,19 +26,27 @@ Start a helu with the In App Purchase ID:
     @helu.fail = lambda { |transaction| puts transaction ; # node here for failed in app purchase }
     @helu.winning = lambda { |transaction| puts transaction ; # code here for successful in app purchase }
 
+#### also for restoring in app purchases
+
+	 @helu.restore = lambda { restoring_method }
+
 
 The transaction object on the lambda is the one we get from Apple; Therefore, it is a SKPaymentTransaction. [More information about it here](http://developer.apple.com/library/ios/#documentation/StoreKit/Reference/SKPaymentTransaction_Class/Reference/Reference.html)
 
 
 
-####  buy the product: 
+####  buy the product:
 
     @helu.buy
 
+#### restore the product:
 
-Make sure that if your code ever throws out the Helu object, it better also close the store before doing so.
+	@helu.restore
 
-    @helu.close_the_store
+
+### Make sure that if your code ever throws out the Helu object, it better also close the store before doing so.
+
+    @helu.close
 
 
 ## Example App: 
