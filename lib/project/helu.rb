@@ -44,7 +44,6 @@ class Helu
   end
 
   def restoreTransaction(transaction)
-    recordTransaction(transaction.originalTransaction)
     finishTransaction(transaction,wasSuccessful:true)
   end
 
