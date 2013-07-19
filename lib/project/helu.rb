@@ -1,24 +1,12 @@
 class Helu
   
-  attr_reader :product_id, :purchased_ids, :storage
-
+  attr_reader :product_id
+  attr_accessor :storage, :winning, :restore, :fail
 
   def initialize(product_id)
     @product_id = product_id
     SKPaymentQueue.defaultQueue.addTransactionObserver(self)
     @storage = LocalStorage.new
-  end
-
-  def fail=(fail_block)
-    @fail = fail_block
-  end
-
-  def winning=(winning_block)
-    @winning = winning_block
-  end
-
-  def restore=(restore_block)
-    @restore = restore_block
   end
 
   def buy
