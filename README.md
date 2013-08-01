@@ -61,3 +61,7 @@ The transaction object on the lambda is the one we get from Apple; Therefore, it
 
 + Consumables and Non-Consumables are supported. 
 + Auto-Renewable subscriptions and Non-Renewing Subscriptions are not supported yet. However, we would love some help making it happen. 
+
+## License
+
+Helu is relase under the [MIT license](http://opensource.org/licenses/MIT).
