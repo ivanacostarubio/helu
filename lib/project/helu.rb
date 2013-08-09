@@ -3,6 +3,13 @@ class Helu
   attr_reader :product_id
   attr_accessor :storage, :winning, :restore, :fail
 
+  class <<self
+    # see product_info_fetcher.rb for info
+    def fetch_product_info(*products, &b)
+      ProductInfoFetcher.fetch(*products, &b)
+    end
+  end
+
   def initialize(product_id)
     @product_id = product_id
     SKPaymentQueue.defaultQueue.addTransactionObserver(self)
