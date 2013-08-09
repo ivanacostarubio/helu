@@ -4,6 +4,8 @@
 
 In-App purchases for RubyMotion.
 
+![Money](https://raw.github.com/ivanacostarubio/helu/readme/resources/money.jpg)
+
 ## Installation
 
 Add this line to your application's Gemfile:
