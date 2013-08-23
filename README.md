@@ -19,6 +19,10 @@ And then execute:
 Or install it yourself as:
 
     $ gem install helu
+    
+Include the StoreKit framework in your Rakefile:
+
+    app.frameworks += ['StoreKit']
 
 ## USAGE
 
