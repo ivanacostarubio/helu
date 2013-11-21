@@ -107,3 +107,9 @@ Remember that for this to work properly, you must add your app identifier to the
 ## License
 
 Helu is relase under the [MIT license](http://opensource.org/licenses/MIT).
+
+## Credits
+
+Ivan Acosta-Rubio   | Initial work
+Michal J.           | Product Info Fetcher
+Simon Traels Ravn   | Removing Observer and Bug fixes.
