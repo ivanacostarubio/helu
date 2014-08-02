@@ -33,11 +33,8 @@ class Helu
     @storage.all.include?(product_id)
   end
 
-#  private
-
   def finishTransaction(transaction, wasSuccessful:wasSuccessful)
     SKPaymentQueue.defaultQueue.finishTransaction(transaction)
-    produt_id = transaction.payment.productIdentifier
     if wasSuccessful 
       @winning.call(transaction)
       storage.add(product_id)
@@ -55,11 +52,9 @@ class Helu
   end
 
   def failedTransaction(transaction)
-    produt_id = transaction.payment.productIdentifier
-
-    if (transaction.error.code != SKErrorPaymentCancelled)
+    if transaction.error && (transaction.error.code != SKErrorPaymentCancelled)
       finishTransaction(transaction, wasSuccessful:false)
-    elsif transaction.error.code == SKErrorPaymentCancelled
+    elsif transaction.error && (transaction.error.code == SKErrorPaymentCancelled)
       @fail.call(transaction)
     else
       SKPaymentQueue.defaultQueue.finishTransaction(transaction)
